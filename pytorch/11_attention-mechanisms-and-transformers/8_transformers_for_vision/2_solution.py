@@ -108,8 +108,42 @@ class ViT(d2l.Classifier):
         X = torch.cat((self.cls_token.expand(X.shape[0], -1, -1), X), 1)
         X = self.dropout(X + self.pos_embedding)
         for blk in self.blks:
-            X = blk(X)
+            X = blk(X) # since we are not supplying any valid_lens here, we are not doing any masking. We are considering the attention between each key-query pair
+        # at this point, shape of X: batch_size, num_patches+1 (including cls), num_hiddens
         return self.head(X[:, 0])
+
+# The ViT class which encapsulates multiple VitBlocks
+class ViTMean(d2l.Classifier):
+    """Vision Transformer."""
+    def __init__(self, img_size, patch_size, num_hiddens, mlp_num_hiddens,
+                 num_heads, num_blks, emb_dropout, blk_dropout, lr=0.1,
+                 use_bias=False, num_classes=10):
+        super().__init__()
+        self.save_hyperparameters()
+        self.patch_embedding = PatchEmbedding(
+            img_size, patch_size, num_hiddens)
+        self.cls_token = nn.Parameter(torch.zeros(1, 1, num_hiddens))
+        num_steps = self.patch_embedding.num_patches + 1  # Add the cls token
+        # Positional embeddings are learnable
+        self.pos_embedding = nn.Parameter(
+            torch.randn(1, num_steps, num_hiddens))
+        self.dropout = nn.Dropout(emb_dropout)
+        self.blks = nn.Sequential()
+        for i in range(num_blks):
+            self.blks.add_module(f"{i}", ViTBlock(
+                num_hiddens, num_hiddens, mlp_num_hiddens,
+                num_heads, blk_dropout, use_bias))
+        self.head = nn.Sequential(nn.LayerNorm(num_hiddens),
+                                  nn.Linear(num_hiddens, num_classes))
+
+    def forward(self, X):
+        X = self.patch_embedding(X)
+        X = torch.cat((self.cls_token.expand(X.shape[0], -1, -1), X), 1)
+        X = self.dropout(X + self.pos_embedding)
+        for blk in self.blks:
+            X = blk(X) # since we are not supplying any valid_lens here, we are not doing any masking. We are considering the attention between each key-query pair
+        # at this point, shape of X: batch_size, num_patches+1 (including cls), num_hiddens
+        return self.head(torch.mean(X[:,1:,:], dim = 1))
 
 # training
 img_size, patch_size = 48, 16
@@ -119,16 +153,55 @@ emb_dropout, blk_dropout, lr = 0.1, 0.1, 0.1
 # initialize data
 data = d2l.FashionMNIST(batch_size=128, resize=(img_size, img_size))
 # we subset data to only 10% points using torch.data.utils.Subset
-data.train = SubsetProportionData(data.train, 0.02) # datapoints from 60k to 1200
-data.val = SubsetProportionData(data.val, 0.1) # datapoints from 10k to 1k
+data.train = SubsetProportionData(data.train, 0.05) # datapoints from 60k to 3k
+data.val = SubsetProportionData(data.val, 0.02) # fraction of datapoints out of 10k
 
-# declare model and trainer 
+### case when we derive the output from cls's embeddings
 model = ViT(img_size, patch_size, num_hiddens, mlp_num_hiddens, num_heads,
             num_blks, emb_dropout, blk_dropout, lr)
-trainer = d2l.Trainer(max_epochs=2)
+# train the model
+trainer = d2l.Trainer(max_epochs=5)
 trainer.fit(model, data)
+# get accuracy
+accuracy1 = Accuracy(model, data)
 
-Accuracy(model, data)
+### case when we derive the output from avg of patches' embeddings
+model = ViTMean(img_size, patch_size, num_hiddens, mlp_num_hiddens, num_heads,
+            num_blks, emb_dropout, blk_dropout, lr)
+# train the model
+trainer = d2l.Trainer(max_epochs=5)
+trainer.fit(model, data)
+# get accuracy
+accuracy2 = Accuracy(model, data)
+
+# Conclusion: The accuracy increased from 0.4080 in case of getting the output from cls embeddings
+# to 0.4792 in case of getting the output from the average embedding of all the patches. I wonder 
+# why that is the case. My guess is that in this case, since we are attending every patch by every 
+# patch (because of no valid_lens supplied when passing X through blks in ViT), obtaining the final 
+# output using average embeddings of all patches is more beneficial/informative than the cls 
+# patch, which originates from random noise. However, when we do supply valid_lens (like in 
+# sentence tranformers), then due to the fact that cls is in the first position and attends to 
+# every other patch, it might be more informative to get the output from its embedding than the 
+# average of patches' embeddings. Another possible reason could be that a bigger data or more 
+# epoches may turn the tables here, as cls requires more "correction" because it is totally 
+# initialized by random values.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
