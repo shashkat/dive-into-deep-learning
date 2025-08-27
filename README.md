@@ -6,8 +6,8 @@ These are my exercise solutions to some of the exercises from Dive into Deep Lea
 
 ---
 - [ ] **Chapter 11: Attention Mechanisms and Transformers**
-    - [x] 11.3 Attention Scoring Functions?
-    - [ ] 11.7 The Transformer Architecture?
+    - [x] 11.3 Attention Scoring Functions
+    - [ ] 11.7 The Transformer Architecture
     - [x] 11.8 Transformers for Vision
     - [ ] 11.9 Large-Scale Pretraining with Transformers
 - [ ] **Chapter 12: Optimization Algorithms**
