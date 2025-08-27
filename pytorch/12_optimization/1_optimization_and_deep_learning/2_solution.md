@@ -1,0 +1,4 @@
+1. First of all, the equation for eigenvector-eigenvalue-matrix relationship looks like this: Xv=lv. Here, v is the eigenvector, X is the matrix, and l is the eigenvalue corresponding to the eigenvector v. If we multiply both sides by -1, the equation still holds, and that can be inferred as: "inverting the sign of a matrix, its eigenvalue gets inverted, and eigenvector remains same".
+Now, suppose we sample some matrices M. As we sample more and more, they will be symmetrically distributed around 0 (meaning P(M) = P(-M)) by virtue of the symmetrical distribution of p_ij. Hence, the eigenvalues corresponding to the sampled matrices will also be symmetrically distributed, because they eigenvalue of M is negative of eigenvalue of -M.
+
+2. The values of lambda are distributed symmetrically around 0, but that doesn't necessarily mean that P(l=0) = 0. Hence, the above doesn't mean that P(l>0) = 0.5.

@@ -1,0 +1,1 @@
+Some challenges I can think of are exploding gradients, finding optimal learning rate according to location in the high dimensional space of parameters we are in, etc.

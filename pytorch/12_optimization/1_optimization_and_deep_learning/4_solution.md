@@ -1,0 +1,3 @@
+1. This is hard because if the ball is slightly distant from the exact saddle location, it will go down. It is an unstable equilibrium at the saddle point. If it is slightly higher, gravity will give it enough speed that it rolls further down from the saddle, and if it is slightly lower, there is not stopping it from going down.
+
+2. We can introduce some random changes in parameters to move slightly away from saddle points, which will let us go past them.
