@@ -1,0 +1,3 @@
+1.  If we are checking for pairs of points lying on the boundary, we are automatically checking for all pairs of points not lying on the boundary (because the line between the boundary points contains lines between interior points in that direction). Hence, if there would have been a part of any line outside the set, it would have been caught while checking for pairs of points on the boundary.
+
+2. 

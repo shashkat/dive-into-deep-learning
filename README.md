@@ -12,6 +12,7 @@ These are my exercise solutions to some of the exercises from Dive into Deep Lea
     - [ ] 11.9 Large-Scale Pretraining with Transformers
 - [ ] **Chapter 12: Optimization Algorithms**
     - [x] 12.1 Optimization and Deep Learning
+    - [x] 12.2 Convexity
 ---
 
 
