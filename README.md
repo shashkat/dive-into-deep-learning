@@ -14,7 +14,8 @@ These are my exercise solutions to some of the exercises from Dive into Deep Lea
     - [x] 12.1 Optimization and Deep Learning
     - [x] 12.2 Convexity
     - [x] 12.3 Gradient Descent
-    - [ ] 12.4 Stochastic Gradient Descent
+    - [x] 12.4 Stochastic Gradient Descent
+    - [ ] 12.5 Minibatch Stochastic Gradient Descent
 ---
 
 

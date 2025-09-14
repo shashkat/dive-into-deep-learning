@@ -1,0 +1,1 @@
+- We will use preconditioning as we used in the full gradient descent in the previous chapter. It means we will compute the diagonal hessian also for the loss function and update the params using the equation $x \leftarrow x - \mathrm{diag}(H)^{-1} \nabla f(x)$.
