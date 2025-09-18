@@ -1,0 +1,129 @@
+# lets duplicate the data and see what effect it has on the training times of the 
+# different approaches
+
+import time
+import numpy as np
+import torch
+from torch import nn
+from d2l import torch as d2l
+import matplotlib.pyplot as plt
+import time
+
+# trainer function
+def sgd(params, states, hyperparams):
+    for p in params:
+        p.data.sub_(hyperparams['lr'] * p.grad)
+        p.grad.data.zero_()
+
+# function to get the data
+def get_data_ch11_duplicate(batch_size=10, n=1500):
+    data = np.genfromtxt(d2l.download('airfoil'),
+                         dtype=np.float32, delimiter='\t')
+    data = np.vstack([data.copy(), data.copy()])
+    data = torch.from_numpy((data - data.mean(axis=0)) / data.std(axis=0))
+    data_iter = d2l.load_array((data[:n, :-1], data[:n, -1]),
+                               batch_size, is_train=True)
+    return data_iter, data.shape[1]-1
+
+# generic training function (with personal modification of stopping when loss < 0.25)
+def train_ch11(trainer_fn, states, hyperparams, data_iter,feature_dim, num_epochs=2):
+    # Initialization
+    w = torch.normal(mean=0.0, std=0.01, size=(feature_dim, 1),
+                     requires_grad=True)
+    b = torch.zeros((1), requires_grad=True)
+    net, loss = lambda X: d2l.linreg(X, w, b), d2l.squared_loss
+    # Train
+    animator = d2l.Animator(xlabel='epoch', ylabel='loss',
+                            xlim=[0, num_epochs], ylim=[0.22, 0.35])
+    n, timer = 0, d2l.Timer()
+    for _ in range(num_epochs):
+        for X, y in data_iter:
+            l = loss(net(X), y).mean()
+            
+            # PERSONAL EDIT: if loss is less than 0.25, then simply return. We do this, because we want to be able to time when loss reaches a certain value and don't care about num_epochs or num_iters
+            # if l < 0.25:
+            # 	print(f'reached loss < 0.25. Loss = {l}')
+            # 	return
+
+            l.backward()
+            trainer_fn([w, b], states, hyperparams)
+            n += X.shape[0]
+            if n % 200 == 0:
+                timer.stop()
+                animator.add(n/X.shape[0]/len(data_iter),
+                             (d2l.evaluate_loss(net, data_iter, loss),))
+                timer.start()
+    # print(f'loss: {animator.Y[0][-1]:.3f}, {timer.sum()/num_epochs:.3f} sec/epoch')
+    return timer.cumsum(), animator.Y[0]
+
+# train using stochastic gradient descent (by varying batch_size, can be made minibatch SGD 
+# or vanilla GD)
+def train_sgd_data_duplicate(lr, batch_size, num_epochs=2):
+    data_iter, feature_dim = get_data_ch11_duplicate(batch_size)
+    return train_ch11(
+        sgd, None, {'lr': lr}, data_iter, feature_dim, num_epochs)
+
+# I will try a set of learning rate values and batch_size values in attempt to get fastest 
+# (in terms of clock time instead of num_epochs or num_iterations) to a decent loss (<0.25)
+learning_rates = [0.1]
+batch_sizes = [1, 10, 100, 400, 1500]
+for learning_rate in learning_rates:
+	# learning_rate = 0.1
+	for batch_size in batch_sizes:
+		starttime = time.time()
+		train_sgd_data_duplicate(learning_rate, batch_size, 100)
+		endtime = time.time()
+		print(f'--> lr = {learning_rate}, batch_size = {batch_size}, time taken = {round(endtime - starttime, 2)}')
+
+# when data not duplicated (from solution 1)
+# --> lr = 0.1, batch_size = 1, time taken = 0.16
+# --> lr = 0.1, batch_size = 10, time taken = 0.04
+# --> lr = 0.1, batch_size = 100, time taken = 0.19
+# --> lr = 0.1, batch_size = 400, time taken = 0.28
+# --> lr = 0.1, batch_size = 1500, time taken = 0.67
+train_sgd(0.1, 10, 20)
+plt.show()
+
+# when data duplicated 
+# --> lr = 0.1, batch_size = 1, time taken = 0.75
+# --> lr = 0.1, batch_size = 10, time taken = 0.02
+# --> lr = 0.1, batch_size = 100, time taken = 0.16
+# --> lr = 0.1, batch_size = 400, time taken = 0.27
+# --> lr = 0.1, batch_size = 1500, time taken = 0.73
+train_sgd_data_duplicate(0.1, 10, 20)
+plt.show()
+
+# Conclusion: Hence, we can see that due to duplication of data, stochastic gradient descent 
+# takes a lot more time to reach similar accuracy but minibatch SGD and vanilla GD take almost 
+# similar time in this case. This is because the effect of duplicating the data is similar as 
+# allowing replacements when sampling. Since it is all the more important in case of SGD to 
+# be exposed more different datapoints, having replacements or the data being duplicated leads 
+# to highest degradation in performance in case of SGD. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
