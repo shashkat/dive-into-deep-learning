@@ -16,7 +16,8 @@ These are my exercise solutions to some of the exercises from Dive into Deep Lea
     - [x] 12.3 Gradient Descent
     - [x] 12.4 Stochastic Gradient Descent
     - [x] 12.5 Minibatch Stochastic Gradient Descent
-    - [ ] 12.6 Momentum
+    - [x] 12.6 Momentum
+    - [ ] 12.7 Adagrad
 ---
 
 
