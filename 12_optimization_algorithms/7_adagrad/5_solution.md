@@ -1,0 +1,1 @@
+- Not trying right now, but my guess is that it would lead to rapid drop in learning rate and hence slow convergence.
