@@ -18,7 +18,8 @@ These are my exercise solutions to some of the exercises from Dive into Deep Lea
     - [x] 12.5 Minibatch Stochastic Gradient Descent
     - [x] 12.6 Momentum
     - [x] 12.7 Adagrad
-    - [ ] 12.8 RMSProp
+    - [x] 12.8 RMSProp
+    - [ ] 12.9 Adadelta
 ---
 
 

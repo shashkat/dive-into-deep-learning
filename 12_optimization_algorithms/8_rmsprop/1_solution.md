@@ -1,0 +1,1 @@
+- If we set gamma to 1, then s_t will be 0 for each step, and basically we will have a constant learning rate (which will be quite high as the denominator of eta will be just the epsilon term, which is generally kept quite small). hence, we will lose the coordinate-level preconditioning effect if we keep gamma = 1.
