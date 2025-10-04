@@ -20,6 +20,8 @@ These are my exercise solutions to some of the exercises from Dive into Deep Lea
     - [x] 12.7 Adagrad
     - [x] 12.8 RMSProp
     - [ ] 12.9 Adadelta
+    - [x] 12.10 Adam
+    - [ ] 12.11 Learning Rate Scheduling
 ---
 
 
