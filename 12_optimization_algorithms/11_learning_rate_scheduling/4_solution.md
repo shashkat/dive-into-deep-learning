@@ -1,0 +1,1 @@
+- How long warmup should last depends on the dataset and model architecture. Generally the guideline is to have around 5-10% of the total training time dedicated to warmup, but it might be more for more deeper/complicated models, but less for simpler models.
