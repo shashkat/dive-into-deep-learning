@@ -22,6 +22,9 @@ These are my exercise solutions to some of the exercises from Dive into Deep Lea
     - [ ] 12.9 Adadelta
     - [x] 12.10 Adam
     - [x] 12.11 Learning Rate Scheduling
+- [ ] **Chapter 13: Computational Performance**
+    - [x] 13.1 Compilers and Interpreters
+    - [ ] 13.2 Asynchronous Computation
 ---
 
 
