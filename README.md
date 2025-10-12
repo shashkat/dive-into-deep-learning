@@ -24,7 +24,8 @@ These are my exercise solutions to some of the exercises from Dive into Deep Lea
     - [x] 12.11 Learning Rate Scheduling
 - [ ] **Chapter 13: Computational Performance**
     - [x] 13.1 Compilers and Interpreters
-    - [ ] 13.2 Asynchronous Computation
+    - [x] 13.2 Asynchronous Computation
+    - [ ] 13.3 Automatic Parallelism
 ---
 
 
