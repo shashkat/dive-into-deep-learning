@@ -26,7 +26,8 @@ These are my exercise solutions to some of the exercises from Dive into Deep Lea
     - [x] 13.1 Compilers and Interpreters
     - [x] 13.2 Asynchronous Computation
     - [x] 13.3 Automatic Parallelism
-    - [ ] 13.4 Hardware
+    - [x] 13.4 Hardware
+    - [ ] 13.5 Training on Multiple GPUs
 ---
 
 

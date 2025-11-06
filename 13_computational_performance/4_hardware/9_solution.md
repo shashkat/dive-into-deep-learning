@@ -1,0 +1,1 @@
+- This is a bit tricky to estimate as atleast in macOS, the disk cache size is dynamic (varies according to memory pressure), and is not inspectable using system APIs or user level code on macOS.
