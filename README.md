@@ -27,7 +27,8 @@ These are my exercise solutions to some of the exercises from Dive into Deep Lea
     - [x] 13.2 Asynchronous Computation
     - [x] 13.3 Automatic Parallelism
     - [x] 13.4 Hardware
-    - [ ] 13.5 Training on Multiple GPUs
+    - [x] 13.5 Training on Multiple GPUs
+    - [ ] 13.6 Concise Implementation for Multiple GPUs
 ---
 
 
