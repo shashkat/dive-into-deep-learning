@@ -19,8 +19,10 @@ s1 = Stream(device = torch.device('cuda', 1))
 torch.manual_seed(42)
 A = torch.randn(1024**2 * 10, device="cuda:0")
 B = torch.randn(1024**2 * 10, device="cuda:1")
+# B = torch.randn(1024**2 * 10, device="cuda:0")
 
 # store in device variable, the cuda device onto which we will be making the transfer (receiver)
+device0 = torch.device("cuda", 0)
 device = torch.device("cuda", 1)
 
 # The function we want to profile.
@@ -61,6 +63,7 @@ def inner(sender_streamed = False, receiver_streamed = False, non_blocking = Tru
     # the copy is done in the context of secondary streams in both gpus
     B_multiplied = B * B * B * B
     base_stream_event = torch.cuda.current_stream(device = device).record_event() # record an event in the default stream of the receiver gpu
+    # base_stream_event = torch.cuda.current_stream(device = device0).record_event() # record an event in the default stream of the receiver gpu
     secondary_stream0_event.synchronize() # make the cpu thread wait till this event is completed
     secondary_stream1_event.synchronize() # make the cpu thread wait till this event is completed
     base_stream_event.synchronize() # make the cpu thread wait till this event is completed (this synchronization marks completion of multiplication task)
@@ -91,6 +94,9 @@ def benchmark_with_profiler(sender_streamed = False, receiver_streamed = False, 
         ),
     ) as prof:
         for step_idx in range(1, num_steps + 1):
+            # make sure the devices are ready to go before running the inner function
+            for i in [0,1]:
+                torch.cuda.synchronize(device=torch.device('cuda', i))            
             inner(sender_streamed, receiver_streamed, non_blocking)
             if rank is None or rank == 0:
                 prof.step()
@@ -99,8 +105,7 @@ def benchmark_with_profiler(sender_streamed = False, receiver_streamed = False, 
 # do the profiling of the inner function.
 for i in [True, False]:
 	for j in [True, False]:
-		for k in [True, False]:
-			benchmark_with_profiler(sender_streamed=i, receiver_streamed=j, non_blocking=k)			
+		benchmark_with_profiler(sender_streamed=i, receiver_streamed=j, non_blocking=True)
 
 
 
