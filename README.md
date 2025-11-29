@@ -22,14 +22,16 @@ These are my exercise solutions to some of the exercises from Dive into Deep Lea
     - [ ] 12.9 Adadelta
     - [x] 12.10 Adam
     - [x] 12.11 Learning Rate Scheduling
-- [ ] **Chapter 13: Computational Performance**
+- [x] **Chapter 13: Computational Performance**
     - [x] 13.1 Compilers and Interpreters
     - [x] 13.2 Asynchronous Computation
     - [x] 13.3 Automatic Parallelism
     - [x] 13.4 Hardware
     - [x] 13.5 Training on Multiple GPUs
     - [x] 13.6 Concise Implementation for Multiple GPUs
-    - [ ] 13.7 Parameter Servers
+    - [x] 13.7 Parameter Servers
+- [ ] **Chapter 14: Computer Vision**
+    - [ ] 14.1 Image Augmentation
 ---
 
 
