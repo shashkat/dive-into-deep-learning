@@ -5,6 +5,9 @@ These are my exercise solutions to some of the exercises from Dive into Deep Lea
 ### Progress
 
 ---
+- [ ] **Chapter 7: Convolutional Neuronal Networks**
+    - [x] 7.1 From Fully Connected Layers to Convolutions
+    - [ ] 7.2 Convolutions for Images
 - [ ] **Chapter 11: Attention Mechanisms and Transformers**
     - [x] 11.3 Attention Scoring Functions
     - [ ] 11.7 The Transformer Architecture
