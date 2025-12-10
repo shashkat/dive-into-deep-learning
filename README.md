@@ -1,6 +1,6 @@
 # Dive into Deep Learning
 
-These are my exercise solutions to some of the exercises from Dive into Deep Learning book. They're in the pytorch folder. Many of the chapters' solutions are incomplete or missing. Contributions are most welcome!
+These are my exercise solutions to some of the exercises from Dive into Deep Learning book. Many of the chapters' solutions are incomplete or missing. Contributions are most welcome!
 
 ### Progress
 
@@ -8,7 +8,8 @@ These are my exercise solutions to some of the exercises from Dive into Deep Lea
 - [ ] **Chapter 7: Convolutional Neuronal Networks**
     - [x] 7.1 From Fully Connected Layers to Convolutions
     - [x] 7.2 Convolutions for Images
-    - [ ] 7.3 Padding and Stride
+    - [x] 7.3 Padding and Stride
+    - [ ] 7.4 Multiple Input and Multiple Output Channels
 - [ ] **Chapter 11: Attention Mechanisms and Transformers**
     - [x] 11.3 Attention Scoring Functions
     - [ ] 11.7 The Transformer Architecture
