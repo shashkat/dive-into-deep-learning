@@ -9,7 +9,8 @@ These are my exercise solutions to some of the exercises from Dive into Deep Lea
     - [x] 7.1 From Fully Connected Layers to Convolutions
     - [x] 7.2 Convolutions for Images
     - [x] 7.3 Padding and Stride
-    - [ ] 7.4 Multiple Input and Multiple Output Channels
+    - [x] 7.4 Multiple Input and Multiple Output Channels
+    - [ ] 7.5 Pooling
 - [ ] **Chapter 11: Attention Mechanisms and Transformers**
     - [x] 11.3 Attention Scoring Functions
     - [ ] 11.7 The Transformer Architecture
