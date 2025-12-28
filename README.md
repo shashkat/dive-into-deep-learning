@@ -5,13 +5,15 @@ These are my exercise solutions to some of the exercises from Dive into Deep Lea
 ### Progress
 
 ---
-- [ ] **Chapter 7: Convolutional Neuronal Networks**
+- [ ] **Chapter 5: Multilayer Perceptrons**
+    - [ ] 5.4 Numerical Stability and Initialization
+- [x] **Chapter 7: Convolutional Neuronal Networks**
     - [x] 7.1 From Fully Connected Layers to Convolutions
     - [x] 7.2 Convolutions for Images
     - [x] 7.3 Padding and Stride
     - [x] 7.4 Multiple Input and Multiple Output Channels
     - [x] 7.5 Pooling
-    - [ ] 7.6 Convolutional Neural Networks (LeNet)
+    - [x] 7.6 Convolutional Neural Networks (LeNet)
 - [ ] **Chapter 11: Attention Mechanisms and Transformers**
     - [x] 11.3 Attention Scoring Functions
     - [ ] 11.7 The Transformer Architecture
