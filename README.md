@@ -6,7 +6,7 @@ These are my exercise solutions to some of the exercises from Dive into Deep Lea
 
 ---
 - [ ] **Chapter 5: Multilayer Perceptrons**
-    - [ ] 5.4 Numerical Stability and Initialization
+    - [x] 5.4 Numerical Stability and Initialization
 - [x] **Chapter 7: Convolutional Neuronal Networks**
     - [x] 7.1 From Fully Connected Layers to Convolutions
     - [x] 7.2 Convolutions for Images

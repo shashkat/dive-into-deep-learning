@@ -1,0 +1,1 @@
+- Looking at the paper, it seems like one way to tackle the divergence of gradients of weights of a particular layer would be to have a separate learning rate for each layer, and adjust it appropriately.
