@@ -1,0 +1,3 @@
+- The set of states would be all the possible tuples (horizontal position, velocity).
+- The set of actions would be the set {accelerate_left, accelerate_right}. 
+- A reasonable possible reward function would be the highest height reached by the agent in the run, with maybe a constant but small negative reward at each timepoint, to demotivate the model from taking too much time to reach maximum height.

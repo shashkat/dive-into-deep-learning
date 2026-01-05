@@ -1,0 +1,1 @@
+- The state space would include a lot more information: 2d position of the ball, 2d velocity vector of the ball, position of our paddle and the opponent's paddle. The action space would include just 2 possible actions: move left and move right. 
