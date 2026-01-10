@@ -1,2 +1,0 @@
-- We don't need a separate pooling layer because we can just use max pooling to achieve the same effect as follows:
-Take the negative of the input and pass it to max pooling layer. Take the output of that and again inverse the signs. This is what the min pooling would return.

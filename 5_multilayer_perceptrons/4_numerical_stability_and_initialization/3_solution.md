@@ -1,0 +1,13 @@
+- For the case of two matrices being multiplied, without the matrices exhibiting any special properties, the analytical bound is that the spectral radius of the product is less than equal to the product of spectral radii of the individual matrices: p(AB) < p(A)p(B). Spectral radius is the largest absolute eigenvalue of a matrix. Eg- If a matrix has eigenvalues -2 and 1, its spectral radius is 2 (largest absolute eigenvalue).
+
+- For the special case of positive semidefinite matrices (symmetrical matrices with nonnegative eigenvalues), the inequality is a bit more precise (https://math.stackexchange.com/questions/1193763/eigenvalues-of-product-matrix):
+upper bound on the eigenvalues of the product matrix is the product of the maximum eigenvalues of the two matrices. 
+lower bound on the eigenvalues of the product matrix is the product of the minimum eigenvalues of the two matrices.
+
+Gradients of the weights at early layers of a deep neural network are obtained after successive multiplication of the weight matrices of the layers after it in the network. Hence, deeper the network, the more matrix multiplications happen to obtain the gradient of an early layer.
+
+$\frac{\partial E}{\partial W_0}=X^t \frac{\partial E}{\partial Y}W_1^tW_2^tW_3^t...$
+
+Here, LHS is the gradient of the 'early' layer's weights we are talking about, and on RHS, X^t is the input to the layer with weights W_0, dE/dY is gradient of the output of the layer after going to the right till whichever weights we are including in the product, and W_1, W_2... are the weight matrices of the layers as we move to the right from W_0 layer. What I am trying to show from here is that to the matrix product of all the weight matrices, a vector is multiplied (dE/dY), and transformed using the product linear transformation. Hence, if that linear transformation had large/small eigenvalues, this vector is gonna be likely transformed very large/small vectors, meaning the actual derivatives of the error wrt the weight terms we have in dE/dW_0 are gonna be directly influenced by the eigenvalues of the product of W_1, W_2... , hence this whole discussion pertains to how the weights change in the model. 
+
+Finally, we can conclude that if we want the gradient of the weights at different layers, especially at the more earlier layers to be not too large or not too small, the weight matrices should generally have well conditioned eigenvalues (close to 1), as then the bounds of the eigenvalues of their product are not expected to blow up, meaning that the derivatives of the error wrt weights (entries in dE/dW_0) would generally be well behaved.

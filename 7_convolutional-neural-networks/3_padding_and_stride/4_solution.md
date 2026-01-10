@@ -1,2 +1,0 @@
-- The computational benefits of a stride larger than 1 are that the output of that operation is smaller than the input, hence the subsequent steps will have less computational cost. 
-- Also the operation itself will be faster than say a comparable operation with a smaller stride, because with larger stride, we do less number of computations in the operation itself.
