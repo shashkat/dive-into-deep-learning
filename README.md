@@ -41,9 +41,10 @@ These are my exercise solutions to some of the exercises from Dive into Deep Lea
     - [x] 13.7 Parameter Servers
 - [ ] **Chapter 14: Computer Vision**
     - [ ] 14.1 Image Augmentation
-- [ ] **Chapter 17: Reinforcement Learning**
+- [x] **Chapter 17: Reinforcement Learning**
     - [x] 17.1 Markov Decision Process (MDP)
-    - [ ] 17.2 Value Iteration
+    - [x] 17.2 Value Iteration
+    - [x] 17.3 Q-Learning
 ---
 
 
