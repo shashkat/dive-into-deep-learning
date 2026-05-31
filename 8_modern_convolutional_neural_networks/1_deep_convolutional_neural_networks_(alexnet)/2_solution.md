@@ -1,0 +1,1 @@
+I would optimize such that the memory bandwidth is just sufficient to not let the processor starve of data. This way, I will be able to maximize the output for a given fixed area of processor.

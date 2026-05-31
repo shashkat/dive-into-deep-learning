@@ -14,6 +14,9 @@ These are my exercise solutions to some of the exercises from Dive into Deep Lea
     - [x] 7.4 Multiple Input and Multiple Output Channels
     - [x] 7.5 Pooling
     - [x] 7.6 Convolutional Neural Networks (LeNet)
+- [ ] **Chapter 8: Modern Convolutional Neuronal Networks**
+    - [x] 8.1 Deep Convolutional Neural Networks (AlexNet)
+    - [ ] 8.2 Networks Using Blocks (VGG)
 - [ ] **Chapter 11: Attention Mechanisms and Transformers**
     - [x] 11.3 Attention Scoring Functions
     - [ ] 11.7 The Transformer Architecture

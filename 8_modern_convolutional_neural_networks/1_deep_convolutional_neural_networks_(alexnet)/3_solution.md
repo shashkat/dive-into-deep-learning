@@ -1,0 +1,1 @@
+Engineers no longer report performance benchmarks on AlexNet because it is obsolete now and we have moved way past it in terms of both architecture and compute.

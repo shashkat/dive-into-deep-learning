@@ -39,12 +39,13 @@ class LeNet(nn.Module):
 	# store in the instance
 	def __init__(self, input_channels, num_classes):
 		super().__init__()
-		self.conv1 = nn.Conv2d(in_channels = input_channels, out_channels = 6, kernel_size = 5, padding = 2)
+		# shapes are given as comments here with assumed initial image shape as 28x28. But it can possibly work with other input shapes too.
+		self.conv1 = nn.Conv2d(in_channels = input_channels, out_channels = 6, kernel_size = 5, padding = 2) # shape after this remains same: 28x28
 		self.sig1 = nn.Sigmoid()
-		self.avgpool1 = nn.AvgPool2d(kernel_size=2) # stride is by default equal to kernel_size
-		self.conv2 = nn.Conv2d(in_channels = 6, out_channels = 16, kernel_size = 5) # no padding here
+		self.avgpool1 = nn.AvgPool2d(kernel_size=2) # stride is by default equal to kernel_size. shape: 14x14
+		self.conv2 = nn.Conv2d(in_channels = 6, out_channels = 16, kernel_size = 5) # no padding here. shape: 10x10
 		self.sig2 = nn.Sigmoid()
-		self.avgpool2 = nn.AvgPool2d(kernel_size = 2)
+		self.avgpool2 = nn.AvgPool2d(kernel_size = 2) # shape: 5x5
 		self.flatten1 = nn.Flatten()
 		self.lin1 = nn.LazyLinear(out_features = 120)
 		self.sig3 = nn.Sigmoid()
